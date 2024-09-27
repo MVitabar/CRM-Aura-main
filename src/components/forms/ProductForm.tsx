@@ -27,8 +27,6 @@ function ProductForm() {
 
   console.log(inputs)
 
-  console.log( 'hello, my name is Rocco' )
-
   // ------------------------------------------------------------------------
 
   // const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
