@@ -1,4 +1,4 @@
-import type { InputDataBasic } from "../../types/Inputs"
+import type { InputDataBasic } from "../../types/main"
 
 export function TextArea(data: InputDataBasic) {
   const { labelName, id, required, event } = data

@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
-import SecondaryButton from "../buttons/SecondaryButton";
 import productsIcon from "../../assets/icons/Shopping-bag.svg";
 import statisticsIcon from "../../assets/icons/Brand-google-analytics.svg";
 import inboxIcon from "../../assets/icons/File.svg";
+import { ButtonDefault } from "../buttonsNew/ButtonsSecondary";
+import Plus from "../../assets/icons/Plus.svg?react"
 
 interface SideBarProps {
   onAddProduct: () => void;
@@ -20,17 +21,15 @@ const SideBar: React.FC<SideBarProps> = ({
 }) => {
   return (
     <aside
-      className={`fixed left-0 top-[60px] w-[250px] h-[calc(100vh-60px)] bg-white shadow-lg overflow-y-auto z-10 ${
-        isOpen ? "block" : "hidden md:block"
-      }`}
+      className={`fixed left-0 top-[60px] w-[250px] h-[calc(100vh-60px)] bg-white shadow-lg overflow-y-auto z-10 ${isOpen ? "block" : "hidden md:block"
+        }`}
     >
       <div className="flex flex-col p-4">
-        <SecondaryButton
-          className="mb-6 bg-white text-purple-600 border border-purple-600 hover:bg-purple-600 hover:text-white"
-          onClick={onAddProduct}
-        >
-          Añadir Producto <span className="w-3 h-3 mr-2">+</span>
-        </SecondaryButton>
+
+        <ButtonDefault onClick={onAddProduct}>
+          <span>Añadir producto</span>
+          <span><Plus strokeWidth={1.5}/></span>
+        </ButtonDefault>
 
         <nav>
           <ul className="space-y-2">

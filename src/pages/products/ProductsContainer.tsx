@@ -47,24 +47,20 @@ const ProductsContainer: React.FC<ProductContainerProps> = () => {
           toggleSidebar={toggleSidebar}
           className="hidden md:block md:w-64"
         />
-
         {/* Sidebar responsivo en pantallas pequeñas */}
         <SideBar
           onAddProduct={() => setCurrentView("addProduct")}
           setCurrentView={setCurrentView}
           isOpen={isOpen}
           toggleSidebar={toggleSidebar}
-          className={`block md:hidden absolute z-40 h-full bg-white shadow-lg transform transition-transform ${
-            isOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className={`block md:hidden absolute z-40 h-full bg-white shadow-lg transform transition-transform ${isOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
         />
 
-        <main
-          className={`flex flex-col w-full   bg-gray-100 justify-center items-center overflow-y-auto transition-all duration-300 
-           md:pl-64  
-          `}
-        >
-          {renderView()}
+        <main className="flex flex-col w-full bg-alabaster-50 overflow-y-auto md:pl-64">
+          <div className="max-w-5.5xl">
+            {renderView()}
+          </div>
         </main>
       </div>
     </ProductProvider>

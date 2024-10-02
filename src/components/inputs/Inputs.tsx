@@ -1,4 +1,4 @@
-import type { InputDataBasic, InputNumber } from "../../types/Inputs"
+import type { InputDataBasic, InputNumber } from "../../types/main"
 
 export function InputNumber(data: InputNumber) {
   const { labelName, id, min, step, required, event } = data

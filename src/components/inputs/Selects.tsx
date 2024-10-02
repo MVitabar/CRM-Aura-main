@@ -1,4 +1,4 @@
-import type { Select } from "../../types/Inputs"
+import type { Select } from "../../types/main"
 
 export function Select(data: Select) {
   const { labelName, id, required, children, event } = data
