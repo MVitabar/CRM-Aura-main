@@ -12,10 +12,15 @@ export default {
         'ts': '0.625rem',
         '3.5xl': '2rem',
       },
+      lineHeight: {
+        '4.1': '1.0625rem',
+      },
       spacing: {
         '1.1': '0.3125rem',
         '8.1': '2.1875rem',
-        '5.5xl': '68.75rem',
+      },
+      outlineOffset: {
+        '3': '3px',
       },
       borderRadius: {
         'xs': '0.3125rem',

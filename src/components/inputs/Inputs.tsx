@@ -1,43 +1,74 @@
-import type { InputDataBasic, InputNumber } from "../../types/main"
+import type { InputNumberProps, ChangeEvent, FocusEvent } from "../../types/main"
+import { useState } from "react"
 
-export function InputNumber(data: InputNumber) {
-  const { labelName, id, min, step, required, event } = data
+function InputNumber(props: InputNumberProps) {
+  const { id, name, label, placeholder, defaultValue, max, min, step, disabled, onChange, onBlur } = props
+  const [value, setValue] = useState<number | string>(defaultValue ?? "")
+  const isEmptyChange = !!onChange
+  const isEmptyBlur = !!onBlur
+  const isEmptyLabel = !!label
+
+  const handlerOnChange = (node: ChangeEvent) => {
+    const valueInput = node.target.valueAsNumber
+
+    if (!isNaN(valueInput)) {
+
+      if (min !== undefined && max !== undefined && valueInput >= min && valueInput <= max) {
+        setValue(valueInput)
+        isEmptyChange && onChange(node)
+      }
+      else if (min !== undefined && typeof max !== "number" && valueInput >= min) {
+        setValue(valueInput)
+        isEmptyChange && onChange(node)
+      }
+      else if (max !== undefined && typeof min !== "number" && valueInput <= max) {
+        setValue(valueInput)
+        isEmptyChange && onChange(node)
+      }
+      else if (max === undefined && min === undefined) {
+        setValue(valueInput)
+        isEmptyChange && onChange(node)
+      }
+
+    } else {
+      setValue("")
+      isEmptyChange && onChange(node)
+    }
+  }
+
+  const handlerOnBlur = (node: FocusEvent) => {
+    isEmptyBlur && onBlur(node)
+  }
 
   return (
-    <div>
-      <label className="block text-sm font-medium text-gray-700" htmlFor={id}>
-        {labelName}
-      </label>
+    <div className="group flex flex-col gap-0.5 text-sm/4.1">
+      {
+        isEmptyLabel &&
+        <label
+          className={`${disabled && "text-alabaster-300"} pl-1.1`}
+          htmlFor={id ?? name}
+        >
+          {label}
+        </label>
+      }
       <input
-        className="mt-1 block w-full pl-2 rounded-md border-gray-300 focus:border-indigo-500"
-        id={id}
+        className="border border-alabaster-200 rounded-xs min-h-8.1 px-2.5 outline-offset-3 focus:outline-biloba-700 placeholder:text-alabaster-300 disabled:border-alabaster-75 disabled:bg-inherit"
         type="number"
-        name={id}
-        min={min ?? "0"}
-        step={step ?? "0.01"}
-        required={required}
-        onChange={event}
+        id={id ?? name}
+        name={name}
+        placeholder={placeholder}
+        value={value}
+        min={min}
+        max={max}
+        step={step}
+        disabled={disabled}
+        onChange={handlerOnChange}
+        onBlur={handlerOnBlur}
       />
     </div>
   )
 }
 
-export function InputText(data: InputDataBasic) {
-  const { labelName, id, required, event } = data
-
-  return (
-    <div>
-      <label className="block text-sm font-medium text-gray-700" htmlFor={id}>
-        {labelName}
-      </label>
-      <input
-        className="mt-1 block w-full pl-2 rounded-md border-gray-300 focus:border-indigo-500"
-        id={id}
-        type="text"
-        name={id}
-        required={required}
-        onChange={event}
-      />
-    </div>
-  )
+export {
+  InputNumber
 }
